@@ -34,6 +34,7 @@ class Login extends CI_Controller
                 $data = [
                     'admin_username' => $admin['admin_username'],
                     'admin_pass' => $admin['admin_pass'],
+                    'admin_name' => $admin['admin_name']
                 ];
                 $this->session->set_userdata($data);
                 redirect('ro-admin/index');
@@ -45,5 +46,15 @@ class Login extends CI_Controller
             $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Username salah!!!</div>');
             redirect('ro-admin/login');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('admin_username');
+        $this->session->unset_userdata('admin_pass');
+        $this->session->unset_userdata('admin_name');
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Anda berhasil keluar!</div>');
+        redirect('ro-admin/login');;
     }
 }
