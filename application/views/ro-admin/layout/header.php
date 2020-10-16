@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Admin Dashboard Laundry</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="icon" href="<?= base_url(); ?>/assets/img/icon.ico" type="image/x-icon" />
+    <link rel="icon" href="<?= base_url(); ?>assets/img/icon.ico" type="image/x-icon" />
 
     <!-- Fonts and icons -->
-    <script src="<?= base_url(); ?>/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
             google: {
@@ -16,7 +16,7 @@
             },
             custom: {
                 "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
-                urls: ['../assets/css/fonts.min.css']
+                urls: ['<?= base_url(); ?>assets/css/fonts.min.css']
             },
             active: function() {
                 sessionStorage.fonts = true;
@@ -24,8 +24,8 @@
         });
     </script>
     <!-- CSS Files -->
-    <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/atlantis.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/atlantis.min.css">
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <!-- <link rel="stylesheet" href="../assets/css/demo.css"> -->
@@ -38,7 +38,7 @@
             <div class="logo-header" data-background-color="blue">
 
                 <a href="index.php" class="logo">
-                    <img src="<?= base_url(); ?>/assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
+                    <img src="<?= base_url(); ?>assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
@@ -63,14 +63,14 @@
                         <li class="nav-item dropdown hidden-caret">
                             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                                 <div class="avatar-sm">
-                                    <img src="<?= base_url(); ?>/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                                    <img src="<?= base_url(); ?>assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-user animated fadeIn">
                                 <div class="dropdown-user-scroll scrollbar-outer">
                                     <li>
                                         <div class="user-box">
-                                            <div class="avatar-lg"><img src="<?= base_url(); ?>/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                            <div class="avatar-lg"><img src="<?= base_url(); ?>assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
                                             <div class="u-text">
                                                 <h4><?= $this->session->userdata('admin_username'); ?></h4>
                                                 <p class="text-muted">Administrator</p>

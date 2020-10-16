@@ -4,7 +4,7 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="<?= base_url(); ?>/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                    <img src="<?= base_url(); ?>assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -21,7 +21,7 @@
                 <li class="nav-item <?php if ($title == 'Selamat Datang di Aplikasi Pengelolaan Laundry') {
                                         echo 'active';
                                     } ?>">
-                    <a href="index.php" class="collapsed" aria-expanded="false">
+                    <a href="<?= base_url('ro-admin/index') ?>" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
@@ -35,49 +35,9 @@
                 <li class="nav-item <?php if ($title == 'Data Pelanggan') {
                                         echo 'active';
                                     } ?>">
-                    <a href="pelanggan.php">
+                    <a href="<?= base_url('ro-admin/index/type_trans') ?>">
                         <i class="fas fa-users"></i>
-                        <p>Pelanggan</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php if ($title == 'Data Pengguna') {
-                                        echo 'active';
-                                    } ?>">
-                    <a href="pengguna.php">
-                        <i class="fas fa-users-cog"></i>
-                        <p>Pengguna</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php if ($title == 'Data Outlet') {
-                                        echo 'active';
-                                    } ?>"">
-                            <a href=" outlet.php">
-                    <i class="fas fa-shopping-basket"></i>
-                    <p>Outlet</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php if ($title == 'Data Paket') {
-                                        echo 'active';
-                                    } ?>"">
-                            <a href=" paket.php">
-                    <i class="fas fa-box"></i>
-                    <p>Paket</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php if ($title == 'Data Transaksi') {
-                                        echo 'active';
-                                    } ?>"">
-                            <a href=" transaksi.php">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    <p>Transaksi</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php if ($title == 'Data Laporan') {
-                                        echo 'active';
-                                    } ?>"">
-                            <a href=" laporan.php">
-                    <i class="fas fa-print"></i>
-                    <p>Laporan</p>
+                        <p>Tipe Transportasi</p>
                     </a>
                 </li>
                 <li class="mx-4 mt-2">
