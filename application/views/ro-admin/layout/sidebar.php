@@ -40,6 +40,22 @@
                         <p>Tipe Transportasi</p>
                     </a>
                 </li>
+                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
+                                        echo 'active';
+                                    } ?>">
+                    <a href="<?= base_url('ro-admin/index/trans') ?>">
+                        <i class="fas fa-users"></i>
+                        <p>Transportasi</p>
+                    </a>
+                </li>
+                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
+                                        echo 'active';
+                                    } ?>">
+                    <a href="<?= base_url('ro-admin/index/rute') ?>">
+                        <i class="fas fa-users"></i>
+                        <p>Rute</p>
+                    </a>
+                </li>
                 <li class="mx-4 mt-2">
                     <a href="<?= base_url('ro-admin/login/logout'); ?>" onclick="return confirm('Keluar dari halaman ini?');" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
                 </li>

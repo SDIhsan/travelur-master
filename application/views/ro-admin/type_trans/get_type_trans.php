@@ -62,11 +62,11 @@
 </div>
 
 <!-- Modal Add -->
-<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="addRowModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header no-bd">
-                <h5 class="modal-title">
+                <h5 class="modal-title" id="staticBackdropLabel">
                     <span class="fw-mediumbold">
                         Tambah Tipe Transportasi </span>
                 </h5>
@@ -95,7 +95,7 @@
 <!-- Modal Edit -->
 <?php $no = 0;
 foreach ($type_trans as $type) { ?>
-    <div class="modal fade" id="editModal<?= $type->id_type_trans; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="editModal<?= $type->id_type_trans; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header no-bd">
