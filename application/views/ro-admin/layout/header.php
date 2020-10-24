@@ -79,7 +79,7 @@
                                     </li>
                                     <li>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="<?= base_url('ro-admin/login/logout'); ?>" onclick="return confirm('Keluar dari halaman ini?');">Logout</a>
+                                        <a class="dropdown-item" href="<?= base_url('login/logout'); ?>" onclick="return confirm('Keluar dari halaman ini?');">Logout</a>
                                     </li>
                                 </div>
                             </ul>

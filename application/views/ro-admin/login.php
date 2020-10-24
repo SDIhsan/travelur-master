@@ -14,7 +14,7 @@
         <?= $this->session->flashdata('msg'); ?>
     </center>
     <center>
-        <form action="<?= base_url('ro-admin/login') ?>" method="POST">
+        <form action="<?= base_url('login') ?>" method="POST">
             <label for="">Username</label><br>
             <input type="text" name="admin_username"><br>
             <?= form_error('admin_username', '<small class="text-danger pl-3">', '</small>'); ?><br><br>

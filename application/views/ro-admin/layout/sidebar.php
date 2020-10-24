@@ -56,8 +56,24 @@
                         <p>Rute</p>
                     </a>
                 </li>
+                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
+                                        echo 'active';
+                                    } ?>">
+                    <a href="<?= base_url('ro-admin/index/reservasi') ?>">
+                        <i class="fas fa-users"></i>
+                        <p>Reservasi</p>
+                    </a>
+                </li>
+                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
+                                        echo 'active';
+                                    } ?>">
+                    <a href="<?= base_url('ro-admin/index/user') ?>">
+                        <i class="fas fa-users"></i>
+                        <p>User</p>
+                    </a>
+                </li>
                 <li class="mx-4 mt-2">
-                    <a href="<?= base_url('ro-admin/login/logout'); ?>" onclick="return confirm('Keluar dari halaman ini?');" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                    <a href="<?= base_url('login/logout'); ?>" onclick="return confirm('Keluar dari halaman ini?');" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
                 </li>
             </ul>
         </div>

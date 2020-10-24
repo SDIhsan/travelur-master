@@ -9,6 +9,8 @@ class Index extends CI_Controller
         $this->load->model('type_trans_model');
         $this->load->model('trans_model');
         $this->load->model('rute_model');
+        $this->load->model('reservasi_model');
+        $this->load->model('user_model');
     }
 
     public function index()
@@ -19,6 +21,34 @@ class Index extends CI_Controller
         $this->load->view('ro-admin/layout/header', $data);
         $this->load->view('ro-admin/layout/sidebar', $data);
         $this->load->view('ro-admin/index', $data);
+        $this->load->view('ro-admin/layout/footer', $data);
+    }
+
+    public function reservasi()
+    {
+        $reservasi = $this->reservasi_model->get();
+
+        $data = [
+            'title' => 'Reservasi',
+            'reservasi' => $reservasi
+        ];
+        $this->load->view('ro-admin/layout/header', $data);
+        $this->load->view('ro-admin/layout/sidebar', $data);
+        $this->load->view('ro-admin/reservasi/get_reservasi', $data);
+        $this->load->view('ro-admin/layout/footer', $data);
+    }
+
+    public function user()
+    {
+        $user = $this->user_model->get_admin();
+
+        $data = [
+            'title' => 'User',
+            'user' => $user
+        ];
+        $this->load->view('ro-admin/layout/header', $data);
+        $this->load->view('ro-admin/layout/sidebar', $data);
+        $this->load->view('ro-admin/user/get_user', $data);
         $this->load->view('ro-admin/layout/footer', $data);
     }
 
