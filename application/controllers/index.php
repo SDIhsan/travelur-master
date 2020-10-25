@@ -18,7 +18,7 @@ class Index extends CI_Controller
         $this->cek_login->cek();
 
         $data = [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
         ];
         $this->load->view('user/index', $data);
     }
@@ -144,5 +144,70 @@ class Index extends CI_Controller
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Data berhasil diupdate</div>');
             redirect('index/data_diri');
         }
+    }
+
+    public function cari()
+    {
+        $this->cek_login->cek();
+
+        $keyword = $this->input->post('keyword');
+
+        $rute = $this->rute_model->search($keyword);
+        $trans = $this->trans_model->get();
+        $type_trans = $this->type_trans_model->get();
+
+        $data = [
+            'title' => 'Cari',
+            'rute' => $rute,
+            'trans' => $trans,
+            'type_trans' => $type_trans
+        ];
+
+        $this->load->view('user/get_cari', $data);
+    }
+
+    public function booking($id_rute)
+    {
+        $rute = $this->rute_model->detail($id_rute);
+        $rang = range(1, 9);
+        shuffle($rang);
+        $c = implode($rang);
+        $kode = $c;
+
+        $data = [
+            'title' => 'Booking',
+            'rute' => $rute,
+            'kode' => $kode
+        ];
+
+        $this->load->view('user/booking', $data);
+    }
+
+    public function booking_p()
+    {
+        $data = [
+            'kode_reservasi' => $this->input->post('kode_reservasi'),
+            'user_id' => $this->input->post('user_id'),
+            'rute_id' => $this->input->post('rute_id'),
+            'keberangkatan' => $this->input->post('keberangkatan'),
+            'harga' => $this->input->post('harga'),
+            'tgl_reservasi' => date('Y-m-d'),
+            'status' => 'Proses'
+        ];
+
+        $this->reservasi_model->create($data);
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Data berhasil diupdate</div>');
+        redirect('index/keranjang');
+    }
+
+    public function keranjang($id_reservasi)
+    {
+        $reservasi = $this->reservasi_model->detail($id_reservasi);
+
+        $data = [
+            'title' => 'Bookingan',
+            'reservasi' => $reservasi
+        ];
+        $this->load->view('user/get_keranjang', $data);
     }
 }

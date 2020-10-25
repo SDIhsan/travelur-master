@@ -28,14 +28,12 @@
                                 <tr>
                                     <th style="width: 5%">#</th>
                                     <th>Kode Reservasi</th>
-                                    <th>Pemesanan Pada</th>
                                     <th>Tanggal Reservasi</th>
                                     <th>Keberangkatan</th>
                                     <th>Harga</th>
                                     <th>Nama User</th>
-                                    <th>Transportasi</th>
                                     <th>Status</th>
-                                    <!-- <th>Aksi</th> -->
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,21 +45,18 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $reser->tgl_keberangkatan; ?></td>
-                                        <td><?= $reser->reservasi_pada; ?></td>
                                         <td><?= $reser->tgl_reservasi; ?></td>
                                         <td><?= $reser->keberangkatan; ?></td>
                                         <td><?= $reser->harga; ?></td>
                                         <td><?= $reser->user_nama; ?></td>
-                                        <td><?= $reser->deskripsi; ?></td>
                                         <td><?= $reser->status; ?></td>
-                                        <!-- <td>
-                                            <div class="form-button-action">
-                                                <!-- <a type="button" data-toggle="modal" data-target="#editModal<?= $ru->id_rute ?>" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <?php include 'delete.php' ?>
-                                            </div>
-                                        </td> -->
+                                        <td>
+                                            <?php if ($reser->status == 'Proses') { ?>
+                                                <a href="<?= base_url('ro-admin/index/up_status/' . $reser->id_reservasi) ?>" class="btn btn-primary">Bayar</a>
+                                            <?php } else { ?>
+                                                -
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                                 <?php }
                                 ?>

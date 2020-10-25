@@ -38,6 +38,19 @@ class Index extends CI_Controller
         $this->load->view('ro-admin/layout/footer', $data);
     }
 
+    public function up_status($id_reservasi)
+    {
+        $this->load->library('user_agent');
+
+        $data = [
+            'id_reservasi' => $id_reservasi,
+            'status' => 'Dibayar'
+        ];
+        $this->reservasi_model->update($data);
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert" id="msg">Data berhasil diupdate</div>');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
     public function user()
     {
         $user = $this->user_model->get_admin();
