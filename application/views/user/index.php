@@ -21,7 +21,13 @@
     <form action="<?= base_url('index/cari'); ?>" method="POST">
         <table>
             <td>
+                <label for="">dari</label>
                 <input type="text" name="keyword">
+                <?= form_error('keyword', '<small class="text-danger pl-3">', '</small>'); ?><br>
+            </td>
+            <td>
+                <label for="">ke</label>
+                <input type="text" name="keyword2">
             </td>
             <td>
                 <button type="submit">Submit</button>

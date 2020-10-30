@@ -150,24 +150,36 @@ class Index extends CI_Controller
     {
         $this->cek_login->cek();
 
-        $keyword = $this->input->post('keyword');
+        $valid = $this->form_validation;
+        $valid->set_rules('keyword', 'Pencarian', 'required', ['required' => '%s tidak boleh kosong']);
+        $valid->set_rules('keyword2', 'Pencarian', 'required', ['required' => '%s tidak boleh kosong']);
 
-        $rute = $this->rute_model->search($keyword);
-        $trans = $this->trans_model->get();
-        $type_trans = $this->type_trans_model->get();
+        if (!$valid->run()) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Data tidak ditemukan</div>');
+            redirect('index');
+        } else {
+            $keyword = $this->input->post('keyword');
+            $keyword2 = $this->input->post('keyword2');
 
-        $data = [
-            'title' => 'Cari',
-            'rute' => $rute,
-            'trans' => $trans,
-            'type_trans' => $type_trans
-        ];
+            $rute = $this->rute_model->search($keyword, $keyword2);
+            $trans = $this->trans_model->get();
+            $type_trans = $this->type_trans_model->get();
 
-        $this->load->view('user/get_cari', $data);
+            $data = [
+                'title' => 'Cari',
+                'rute' => $rute,
+                'trans' => $trans,
+                'type_trans' => $type_trans
+            ];
+
+            $this->load->view('user/get_cari', $data);
+        }
     }
 
     public function booking($id_rute)
     {
+        $this->cek_login->cek();
+
         $rute = $this->rute_model->detail($id_rute);
         $rang = range(1, 9);
         shuffle($rang);
@@ -185,6 +197,8 @@ class Index extends CI_Controller
 
     public function booking_p()
     {
+        $this->cek_login->cek();
+
         $data = [
             'kode_reservasi' => $this->input->post('kode_reservasi'),
             'user_id' => $this->input->post('user_id'),
@@ -202,6 +216,8 @@ class Index extends CI_Controller
 
     public function keranjang($id_reservasi)
     {
+        $this->cek_login->cek();
+
         $reservasi = $this->reservasi_model->detail($id_reservasi);
 
         $data = [

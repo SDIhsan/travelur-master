@@ -11,11 +11,11 @@ class Login extends CI_Controller
     public function index()
     {
         $valid = $this->form_validation;
-        $valid->set_rules('admin_username', 'Email', 'required|trim', ['required' => '%s tidak boleh kosong']);
-        $valid->set_rules('admin_pass', 'Password', 'required|trim|min_length[5]', ['min_length' => '%s min 5 karakter', 'required' => '%s tidak boleh kosong']);
+        $valid->set_rules('username', 'Username', 'required|trim', ['required' => '%s tidak boleh kosong']);
+        $valid->set_rules('password', 'Password', 'required|trim|min_length[5]', ['min_length' => '%s min 5 karakter', 'required' => '%s tidak boleh kosong']);
 
         if (!$valid->run()) {
-            $data = ['title' => 'Login Admin'];
+            $data = ['title' => 'Login Petugas'];
             $this->load->view('ro-admin/login', $data);
         } else {
             $this->_login();
@@ -24,20 +24,24 @@ class Login extends CI_Controller
 
     private function _login()
     {
-        $admin_username = $this->input->post('admin_username');
-        $admin_pass = $this->input->post('admin_pass');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
 
-        $admin = $this->db->get_where('tb_admin', ['admin_username' => $admin_username])->row_array();
+        $petugas = $this->db->get_where('tb_petugas', ['username' => $username])->row_array();
 
-        if ($admin) {
-            if (sha1($admin_pass, $admin['admin_pass'])) {
+        if ($petugas) {
+            if (password_verify($password, $petugas['password'])) {
                 $data = [
-                    'admin_username' => $admin['admin_username'],
-                    'admin_pass' => $admin['admin_pass'],
-                    'admin_name' => $admin['admin_name']
+                    'username' => $petugas['username'],
+                    'nama_lengkap' => $petugas['nama_lengkap'],
+                    'level' => $petugas['level']
                 ];
                 $this->session->set_userdata($data);
-                redirect('ro-admin/index');
+                if ($petugas['level'] == 'Admin') {
+                    redirect('ro-admin/index');
+                } else {
+                    redirect('ro-petugas/index');
+                }
             } else {
                 $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Password salah!!!</div>');
                 redirect('login');
@@ -50,9 +54,9 @@ class Login extends CI_Controller
 
     public function logout()
     {
-        $this->session->unset_userdata('admin_username');
-        $this->session->unset_userdata('admin_pass');
-        $this->session->unset_userdata('admin_name');
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('nama_lengkap');
+        $this->session->unset_userdata('level');
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Anda berhasil keluar!</div>');
         redirect('login');;

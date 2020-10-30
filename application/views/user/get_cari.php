@@ -21,6 +21,7 @@
         <table>
             <td>
                 <input type="text" name="keyword">
+                <?= form_error('keyword', '<small class="text-danger pl-3">', '</small>'); ?>
             </td>
             <td>
                 <button type="submit">Submit</button>
@@ -37,27 +38,36 @@
                 <th>Dari</th>
                 <th>Tujuan ke</th>
                 <th>Harga</th>
+                <th>Tipe</th>
                 <th>Pesan</th>
             </tr>
         </thead>
         <tbody>
-            <?php $i = 1;
-            foreach ($rute as $ru) { ?>
+            <?php
+            if (count($rute) > 0) {
+                $i = 1;
+                foreach ($rute as $ru) { ?>
+                    <tr>
+                        <td><?= $i; ?></td>
+                        <!-- <td><?= var_dump($ru) ?></td> -->
+                        <td><?= $ru->tgl_keberangkatan; ?></td>
+                        <td><?= $ru->rute_dari; ?></td>
+                        <td><?= $ru->rute_ke; ?></td>
+                        <td><?= $ru->harga; ?></td>
+                        <td><?= $ru->description; ?></td>
+                        <!-- <td><?= $ru->deskripsi; ?></td> -->
+                        <td>
+                            <a href="<?= base_url('index/booking/') . $ru->id_rute; ?>">Booking</a>
+                        </td>
+                    </tr>
+                <?php $i++;
+                }
+            } else { ?>
                 <tr>
-                    <td><?= $i; ?></td>
-                    <!-- <td><?= var_dump($ru) ?></td> -->
-                    <td><?= $ru->tgl_keberangkatan; ?></td>
-                    <td><?= $ru->rute_dari; ?></td>
-                    <td><?= $ru->rute_ke; ?></td>
-                    <td><?= $ru->harga; ?></td>
-                    <!-- <td><?= $ru->description; ?></td> -->
-                    <td>
-                        <a href="<?= base_url('index/booking/') . $ru->id_rute; ?>">Booking</a>
-                    </td>
+                    <td colspan="6" align="center">Data tidak ditemukan</td>
                 </tr>
+            <?php } ?>
         </tbody>
-    <?php $i++;
-            } ?>
     </table>
 
 </body>

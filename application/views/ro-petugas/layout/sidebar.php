@@ -19,7 +19,7 @@
                 <li class="nav-item <?php if ($title == 'Selamat Datang di Aplikasi Pengelolaan Laundry') {
                                         echo 'active';
                                     } ?>">
-                    <a href="<?= base_url('ro-admin/index') ?>" class="collapsed" aria-expanded="false">
+                    <a href="<?= base_url('ro-petugas/index') ?>" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
@@ -33,31 +33,7 @@
                 <li class="nav-item <?php if ($title == 'Data Pelanggan') {
                                         echo 'active';
                                     } ?>">
-                    <a href="<?= base_url('ro-admin/index/type_trans') ?>">
-                        <i class="fas fa-users"></i>
-                        <p>Tipe Transportasi</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
-                                        echo 'active';
-                                    } ?>">
-                    <a href="<?= base_url('ro-admin/index/trans') ?>">
-                        <i class="fas fa-users"></i>
-                        <p>Transportasi</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
-                                        echo 'active';
-                                    } ?>">
-                    <a href="<?= base_url('ro-admin/index/rute') ?>">
-                        <i class="fas fa-users"></i>
-                        <p>Rute</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
-                                        echo 'active';
-                                    } ?>">
-                    <a href="<?= base_url('ro-admin/index/reservasi') ?>">
+                    <a href="<?= base_url('ro-petugas/index/reservasi') ?>">
                         <i class="fas fa-users"></i>
                         <p>Reservasi</p>
                     </a>
@@ -65,7 +41,31 @@
                 <li class="nav-item <?php if ($title == 'Data Pelanggan') {
                                         echo 'active';
                                     } ?>">
-                    <a href="<?= base_url('ro-admin/index/user') ?>">
+                    <a href="<?= base_url('ro-petugas/index/type_trans') ?>">
+                        <i class="fas fa-users"></i>
+                        <p>Tipe Transportasi</p>
+                    </a>
+                </li>
+                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
+                                        echo 'active';
+                                    } ?>">
+                    <a href="<?= base_url('ro-petugas/index/trans') ?>">
+                        <i class="fas fa-users"></i>
+                        <p>Transportasi</p>
+                    </a>
+                </li>
+                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
+                                        echo 'active';
+                                    } ?>">
+                    <a href="<?= base_url('ro-petugas/index/rute') ?>">
+                        <i class="fas fa-users"></i>
+                        <p>Rute</p>
+                    </a>
+                </li>
+                <li class="nav-item <?php if ($title == 'Data Pelanggan') {
+                                        echo 'active';
+                                    } ?>">
+                    <a href="<?= base_url('ro-petugas/index/user') ?>">
                         <i class="fas fa-users"></i>
                         <p>User</p>
                     </a>
@@ -73,7 +73,7 @@
                 <li class="nav-item <?php if ($title == 'Data Pelanggan') {
                                         echo 'active';
                                     } ?>">
-                    <a href="<?= base_url('ro-admin/index/petugas') ?>">
+                    <a href="<?= base_url('ro-petugas/index/petugas') ?>">
                         <i class="fas fa-users"></i>
                         <p>Petugas</p>
                     </a>

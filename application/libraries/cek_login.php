@@ -14,9 +14,35 @@ class Cek_login
     public function cek()
     {
 
-        if ($this->CI->session->userdata('user_nama') == "" && $this->CI->session->userdata('user_id') == "") {
-            $this->CI->session->set_flashdata('message', 'Silahkan Login terlebih dahulu');
+        if ($this->CI->session->userdata('user_nama') == '') {
+            $this->CI->session->set_flashdata('msg', 'Silahkan Login terlebih dahulu');
             redirect(base_url('index/login'));
+        }
+    }
+
+    public function cek_admin()
+    {
+        if ($this->CI->session->userdata('level') != 'Admin') {
+            $this->CI->session->set_flashdata('msg', 'Silahkan Login terlebih dahulu');
+            redirect('login');
+
+            if ($this->session->userdata('username') == '') {
+                $this->CI->session->set_flashdata('msg', 'Silahkan Login terlebih dahulu');
+                redirect('login');
+            }
+        }
+    }
+
+    public function cek_petugas()
+    {
+        if ($this->CI->session->userdata('level') != 'Petugas') {
+            $this->CI->session->set_flashdata('msg', 'Silahkan Login terlebih dahulu');
+            redirect('login');
+
+            if ($this->session->userdata('username') == '') {
+                $this->CI->session->set_flashdata('msg', 'Silahkan Login terlebih dahulu');
+                redirect('login');
+            }
         }
     }
 

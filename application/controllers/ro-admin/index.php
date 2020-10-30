@@ -11,6 +11,9 @@ class Index extends CI_Controller
         $this->load->model('rute_model');
         $this->load->model('reservasi_model');
         $this->load->model('user_model');
+        $this->load->model('petugas_model');
+
+        $this->cek_login->cek_admin();
     }
 
     public function index()
@@ -304,5 +307,82 @@ class Index extends CI_Controller
         $this->rute_model->delete($data);
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert" id="msg">Data berhasil dihapus</div>');
         redirect('ro-admin/index/rute');
+    }
+
+    public function petugas()
+    {
+        $petugas = $this->petugas_model->get();
+
+        $data = [
+            'title' => 'Petugas',
+            'petugas' => $petugas
+        ];
+        $this->load->view('ro-admin/layout/header', $data);
+        $this->load->view('ro-admin/layout/sidebar', $data);
+        $this->load->view('ro-admin/petugas/get_petugas', $data);
+        $this->load->view('ro-admin/layout/footer', $data);
+    }
+
+    public function create_pe()
+    {
+        $valid = $this->form_validation;
+        $valid->set_rules('username', 'Username', 'required');
+        $valid->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
+        $valid->set_rules('password', 'Password', 'required|trim|min_length[5]', ['required' => '%s tidak boleh kosong', 'min_length' => '%s min 5 karakter']);
+        $valid->set_rules('level', 'Level', 'required');
+
+        if (!$valid->run()) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert" id="msg">Gagal menambahkan data!!!</div>');
+            redirect('ro-admin/index/petugas');
+        } else {
+            $data = [
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'nama_lengkap' => htmlspecialchars($this->input->post('nama_lengkap', true)),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'level' => $this->input->post('level')
+            ];
+
+            $this->petugas_model->create($data);
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert" id="msg">Berhasil menambahkan data</div>');
+            redirect('ro-admin/index/petugas');
+        }
+    }
+
+    public function edit_pe()
+    {
+        $valid = $this->form_validation;
+        $valid->set_rules('username', 'Username', 'required');
+        $valid->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
+        $valid->set_rules('level', 'Level', 'required');
+
+        if (!$valid->run()) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert" id="msg">Gagal menambahkan data!!!</div>');
+            redirect('ro-admin/index/petugas');
+        } else {
+            $data = [
+                'id_petugas' => $this->input->post('id_petugas'),
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'nama_lengkap' => htmlspecialchars($this->input->post('nama_lengkap', true)),
+                'level' => $this->input->post('level')
+            ];
+
+            $data2 = [
+                'id_petugas' => $this->input->post('id_petugas'),
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'nama_lengkap' => htmlspecialchars($this->input->post('nama_lengkap', true)),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'level' => $this->input->post('level')
+            ];
+
+            if ($this->input->post('password') != null || $this->input->post('password') == '') {
+                $this->petugas_model->update($data);
+                $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert" id="msg">Berhasil menambahkan data</div>');
+                redirect('ro-admin/index/petugas');
+            } else {
+                $this->petugas_model->update_pass($data2);
+                $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert" id="msg">Berhasil menambahkan data</div>');
+                redirect('ro-admin/index/petugas');
+            }
+        }
     }
 }
